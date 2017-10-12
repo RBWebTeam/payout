@@ -21,14 +21,7 @@
 
    $('body').on('click', '.update_status', function() {
       ids=$(this).attr('data-val');
-      id=ids.split("_");
-      $.ajax({
-        url:"{{URL::to('update-payout')}}",
-        data:{"sale_id":id[0],"act":id[1],"_token":"{{csrf_token()}}"},
-        type:"POST",
-        success:function(msg){
-          console.log(msg);
-        }
-      });
+      $('#modal_saleid').val(ids);
+     
    });
  </script>
