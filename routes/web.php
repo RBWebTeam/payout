@@ -31,6 +31,7 @@ Route::get('product_types','ProductController@product_types');
 Route::get('statuses','ProductController@Statuses');
 Route::get('role','ProductController@role');
 Route::get('user','ProductController@user');
+Route::get('products/view/{id}','ProductController@view');
 });
 
 

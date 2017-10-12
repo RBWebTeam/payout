@@ -28,7 +28,7 @@
                           <td>{{$val->product_type_id}}</td>
                            <td>{{$val->commission_mode}}</td>
                            <td>{{$val->commission_percentage}}</td>
-                          <td><button>View</button> <button>Edit</button> <button>Delete</button></td>
+                          <td><button onclick="location.href='http:/products/add';">Add</button> <button onclick="location.href='http:/products/view/{id}';">View</button> <button onclick="location.href='http:/products/edit';">Edit</button> <button onclick="location.href='http:/products/delete';">Delete</button></td>
                         </tr>
                         @endforeach
                         
