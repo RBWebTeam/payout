@@ -51,5 +51,30 @@ $users = DB::table('users')
     	
     }
 
+
+    public function view($id){
+        $query = DB::table('products')->select('id', 'name', 'product_type_id', 'commission_mode','commission_percentage')->where('id','=',$id)->get();
+     return view('products-view',['query'=>$query]);
+    }
+
+
+    public function edit($id){
+         $query = DB::table('products')->select('id', 'name', 'product_type_id', 'commission_mode','commission_percentage')->where('id','=',$id)->first();
+     return view('products-edit',['query'=>$query]);
+    }
     
+
+
+    public function delete($id){
+    
+         DB::table('products')->where('id', '=', $id)->delete();
+     return  redirect('products');
+    }
+
+    public function add(){
+    return view('products-add');
+ }
+     
+
+
 }

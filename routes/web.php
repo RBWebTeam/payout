@@ -38,6 +38,10 @@ Route::get('product_types','MastersController@product_types');
 Route::get('statuses','MastersController@Statuses');
 Route::get('role','MastersController@role');
 Route::get('user','MastersController@user');
+Route::get('products/view/{id}','MastersController@view');
+Route::get('products/edit/{id}','MastersController@edit');
+Route::get('products/delete/{id}','MastersController@delete');
+Route::get('products-add','MastersController@add');
 });
 
 

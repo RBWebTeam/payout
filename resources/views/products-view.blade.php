@@ -8,9 +8,8 @@
                   <div class="x_content">
                     <p class="text-muted font-13 m-b-30">
                     <b style="font-size: 30px">Product</b>
-                     <a class="btn btn-success" href="{{url('products-add')}}">Add</a>
-                    </p>  
-                    <table id="datatable" class="table table-striped table-bordered">
+                    </p>
+                    <table  class="table table-striped table-bordered">
                       <thead>
                         <tr>
                           <th>Id</th>
@@ -18,7 +17,7 @@
                           <th>Product Type</th>
                           <th>Commission Mode</th>
                           <th>Commission Percentagee</th>
-                          <th>Actions</th>
+                         
                         </tr>
                         </thead>
                         <tbody>
@@ -29,7 +28,6 @@
                           <td>{{$val->product_type_id}}</td>
                            <td>{{$val->commission_mode}}</td>
                            <td>{{$val->commission_percentage}}</td>
-                          <td><a class="btn btn-round btn-info" href="{{url('products/view')}}/{{$val->id}}">View</a> <a class="btn btn-round btn-primary" href="{{url('products/edit')}}/{{$val->id}}">Edit</a> <a class="btn btn-round btn-success" href="{{url('products/delete')}}/{{$val->id}}" onclick="return confirm('Are you sure?')">Delete</a></td>
                         </tr>
                         @endforeach
                         
@@ -42,4 +40,3 @@
           </div>
         </div>
   @endsection
-
