@@ -21,8 +21,6 @@
                           <th>dsa_code</th>
                           <th>product_id</th>
                           <th>status_id</th>
-                          <th>log_id</th>
-                          <th>sync_id</th>
                           <th>create_date</th>
                           <th>modify_date</th>
                           <th>report_month</th>
@@ -51,13 +49,13 @@
                           <th>discount</th>
                           <th>gross_premium</th>
                           <th>premium_for_payout</th>
-                          <th>disbursal_for_payout</th>
                           <th>payout</th>
                           <th>gross_payable</th>
                           <th>less_tds</th>
                           <th>net_payable_after_tds</th>
                           <th>final_commision_payable</th>
-                          <th>payment_in_favour</th>
+                          <th>Verify/Approve</th>
+                          <th>Reject</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -72,8 +70,6 @@
 							<td>{{$value->dsa_code}}</td>
 							<td>{{$value->product_id}}</td>
 							<td>{{$value->status_id}}</td>
-							<td>{{$value->log_id}}</td>
-							<td>{{$value->sync_id}}</td>
 							<td>{{$value->create_date}}</td>
 							<td>{{$value->modify_date}}</td>
 							<td>{{$value->report_month}}</td>
@@ -102,13 +98,23 @@
 							<td>{{$value->discount}}</td>
 							<td>{{$value->gross_premium}}</td>
 							<td>{{$value->premium_for_payout}}</td>
-							<td>{{$value->disbursal_for_payout}}</td>
 							<td>{{$value->payout}}</td>
 							<td>{{$value->gross_payable}}</td>
 							<td>{{$value->less_tds}}</td>
 							<td>{{$value->net_payable_after_tds}}</td>
 							<td>{{$value->final_commision_payable}}</td>
-							<td>{{$value->payment_in_favour}}</td>
+							@if($value->status_id==2)
+								<td ><a data-val="{{$value->id}}_1"  class="btn btn-info btn-lg" data-toggle="modal" data-target="#approve_modal" >
+									Approve</a>
+									
+								</td>
+							@else
+								<td ><a data-val="{{$value->id}}_2"  class="btn btn-info btn-lg" data-toggle="modal" data-target="#approve_modal" >
+									Verify</a>
+								</td>
+							@endif
+							<td ><a data-val="{{$value->id}}_3"  class="btn btn-info btn-lg" data-toggle="modal" data-target="#approve_modal">Reject</a></td>
+							
                         </tr>
                      @endforeach
                         
@@ -120,4 +126,28 @@
               </div>
           </div>
         </div>
+<!-- Modal -->
+  <div class="modal fade" id="approve_modal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Update Status</h4>
+        </div>
+        <div class="modal-body">
+          <select>
+          	<option>Select Status</option>
+          	<option>hiiii</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
    @endsection

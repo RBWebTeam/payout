@@ -28,6 +28,7 @@ Route::group(['middleware' => 'dashboard'], function () {
 	);
 	
  	Route::get('pending-page','PayoutController@pending_payout');
+ 	Route::post('update-payout','PayoutController@update_payout');
 });
 
 Route::group(['middleware' =>['mainadmin',]], function () {
