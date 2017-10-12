@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 
-class ProductController extends Controller
+class MastersController extends Controller
 {
     public function products(){
      
