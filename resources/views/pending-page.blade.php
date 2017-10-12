@@ -54,8 +54,7 @@
                           <th>less_tds</th>
                           <th>net_payable_after_tds</th>
                           <th>final_commision_payable</th>
-                          <th>Verify/Approve</th>
-                          <th>Reject</th>
+                          <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -103,17 +102,11 @@
 							<td>{{$value->less_tds}}</td>
 							<td>{{$value->net_payable_after_tds}}</td>
 							<td>{{$value->final_commision_payable}}</td>
-							@if($value->status_id==2)
-								<td ><a data-val="{{$value->id}}_1"  class="btn btn-info btn-lg" data-toggle="modal" data-target="#approve_modal" >
-									Approve</a>
+							<td ><a   class="btn btn-info btn-lg update_status" data-toggle="modal" data-target="#approve_modal" data-val="{{$value->id}}">
+									Proceed</a>
 									
-								</td>
-							@else
-								<td ><a data-val="{{$value->id}}_2"  class="btn btn-info btn-lg" data-toggle="modal" data-target="#approve_modal" >
-									Verify</a>
-								</td>
-							@endif
-							<td ><a data-val="{{$value->id}}_3"  class="btn btn-info btn-lg" data-toggle="modal" data-target="#approve_modal">Reject</a></td>
+							</td>
+							
 							
                         </tr>
                      @endforeach
@@ -137,10 +130,31 @@
           <h4 class="modal-title">Update Status</h4>
         </div>
         <div class="modal-body">
-          <select>
-          	<option>Select Status</option>
-          	<option>hiiii</option>
-          </select>
+        <form method="POST" action="{{URL::to('update-payout')}}" id="update_status_form">	
+        	<input type="hidden" name="sale_id" id="modal_saleid">
+        {{csrf_field()}}	 
+			    <div class="form-group col-md-4">
+			      <label for="modal_status" class="col-form-label">State</label>
+			      <select id="modal_status" class="form-control" name="status_id">
+			      <option disabled="" selected="">Select Status</option>
+		          	@foreach($status as $val)
+		          	<option value="{{$val->id}}">{{$val->statusname}}</option>
+
+		          	@endforeach
+		          	</select>
+		          	 
+			    </div>
+			    
+			    <div class="form-group col-md-6">
+			      <label for="inputZip" class="col-form-label">Remark</label>
+			<input type="textarea" class="form-control" id="modal_remark" name="modal_remark">
+			    </div>
+			    <div class="form-group col-md-8">
+			      <button type="submit" class="btn btn-primary">Submit</button>
+			    </div>
+			  
+			</form>
+			          
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

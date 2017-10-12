@@ -25,10 +25,10 @@
                 @elseif (Session::get('role_id')==2)
                      <li><a><i class="fa fa-home"></i>Operation<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{URL::to('products')}}">Operation-Pending</a></li>
-                      <li><a href="{{URL::to('products')}}">Operation-Sale-Verified</a></li>
-                      <li><a href="{{URL::to('products')}}">Operation-Sale-Decline</a></li>
-                      <li><a href="{{URL::to('products')}}">Vertical-Commission-Declined</a></li>
+                      <li><a href="{{URL::to('pending-page/1')}}">Operation-Pending</a></li>
+                      <li><a href="{{URL::to('pending-page/2')}}"">Operation-Sale-Verified</a></li>
+                      <li><a href="{{URL::to('pending-page/3')}}"">Operation-Sale-Decline</a></li>
+                      <li><a href="{{URL::to('pending-page/4')}}">Vertical-Commission-Declined</a></li>
                       
                     </ul>
                   </li>
