@@ -38,12 +38,11 @@ class LoginController extends Controller
           //->where('user_type_id','!=','0')
           ->first();
           	if($value){ 
- 
-                      $request->session()->put('userid',$value->id);
+                  $request->session()->put('userid',$value->id);
 		          	  $request->session()->put('name',$value->name);
 		          	  $request->session()->put('email',$value->email);
-		               $request->session()->put('role_id',$value->role_id);
-                       $request->session()->put('product_type_id',$value->product_type_id);
+		              $request->session()->put('role_id',$value->role_id);
+                  $request->session()->put('product_type_id',$value->product_type_id);
 
                      return redirect('dashboard');
 

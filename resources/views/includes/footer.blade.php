@@ -1,7 +1,9 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Payout -<a href="https://colorlib.com">Rupeeboss</a>
+
+            Payout By Landmark Insurance Pvt. Ltd.
+
           </div>
           <div class="clearfix"></div>
         </footer>
