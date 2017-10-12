@@ -43,6 +43,7 @@ Route::get('products/view/{id}','MastersController@view');
 Route::get('products/edit/{id}','MastersController@edit');
 Route::get('products/delete/{id}','MastersController@delete');
 Route::get('products-add','MastersController@add');
+Route::post('products-add-submit','MastersController@products_add_submit');
 });
 
 

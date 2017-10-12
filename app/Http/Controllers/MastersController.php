@@ -73,7 +73,19 @@ $users = DB::table('users')
 
     public function add(){
     return view('products-add');
- }
+   }
+
+    public function products_add_submit(Request $req){
+        // print_r($req->all());exit();
+    $query=DB::table('products')
+    ->insert(['product_name'=>$req->name,
+           'product_type_id'=>$req->product_type,
+           'commission_mode'=>$req->commission_mode,
+           'commission_percentage'=>$req->commission_percentage
+           ]);
+       
+    }
+   
      
 
 

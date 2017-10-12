@@ -23,3 +23,4 @@
     <link href="{{url('vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
 
 <script type="text/javascript" src="{{URL::to('js/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{URL::to('js/validator.min.js')}}"></script>

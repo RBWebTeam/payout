@@ -1,7 +1,7 @@
   @extends('includes.master')
   @section('content')   
 
-  
+
  <div class="right_col" role="main">
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
@@ -12,13 +12,14 @@
                   </div>
                   <div class="x_content">
                     <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                    <form id="products_add_form" data-parsley-validate class="form-horizontal form-label-left">
+                     {{ csrf_field() }}
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name" >Name <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="product_name" >Name <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="name" required="required"  class="form-control col-md-7 col-xs-12">
+                          <input type="text" name="product_name" id="product_name" required="required"  class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="form-group">
@@ -68,20 +69,7 @@
         <!-- /page content -->
  @endsection
 
- <script type="text/javascript">
-   function fnAllowNumeric(e)
-{
-if ((event.keyCode < 48 || event.keyCode > 57) &&(event.keyCode < 35 || event.keyCode > 40) && event.keyCode != 8 && event.keyCode != 46 && event.keyCode != 16 && event.keyCode != 9 && event.keyCode != 45)
-{
-event.keyCode = 0;
-return false;
-}
-return true;
-}
- </script>
 
- <script type="text/javascript">
-   $('#payout_submit').click(function(){
-    alert('okae');
-   });
- </script>
+
+ 
+ 
