@@ -135,7 +135,7 @@
         {{csrf_field()}}	 
 			    <div class="form-group col-md-4">
 			      <label for="modal_status" class="col-form-label">State</label>
-			      <select id="modal_status" class="form-control" name="status_id">
+			      <select id="modal_status" class="form-control" name="status_id" required>
 			      <option disabled="" selected="">Select Status</option>
 		          	@foreach($status as $val)
 		          	<option value="{{$val->id}}">{{$val->statusname}}</option>
@@ -147,7 +147,7 @@
 			    
 			    <div class="form-group col-md-6">
 			      <label for="inputZip" class="col-form-label">Remark</label>
-			<input type="textarea" class="form-control" id="modal_remark" name="modal_remark">
+			<input type="textarea" class="form-control" id="modal_remark" name="modal_remark" required>
 			    </div>
 			    <div class="form-group col-md-8">
 			      <button type="submit" class="btn btn-primary">Submit</button>
