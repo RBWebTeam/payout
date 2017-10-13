@@ -18,8 +18,14 @@ class PayoutController extends Controller
 		$status_id=$req['status_id'];
 		$sales_id=$req['sale_id'];
 		$remark=$req['modal_remark'];
-		$data=DB::select('Call usp_update_sales(?,?,?,?)',[$sales_id,$status_id,$user_id,$remark]);
-
+		try{
+			$data=DB::select('Call usp_update_sales(?,?,?,?)',[$sales_id,$status_id,$user_id,$remark]);
+			Session::flash('msg', "lead Status update Successfully");
+		}catch(\Exception $ee){
+			Session::flash('msg', "Error:lead Status update Failed");
+		}
+		return redirect('dashboard');
+		
 	}
 	public function get_payout_data($status){
 		
