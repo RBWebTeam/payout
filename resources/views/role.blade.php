@@ -14,6 +14,7 @@
                         <tr>
                           <th>Id</th>
                           <th>Name</th>
+                          <th>Active</th>
                           <th>Actions</th>
                         </tr>
                         </thead>
@@ -22,7 +23,8 @@
                         <tr>
                           <td>{{$val->id}}</td>
                           <td>{{$val->name}}</td>
-                          <td>Action</td>
+                          <td>{{$val->active}}</td>
+                          <td><a class="btn btn-round btn-info" href="{{url('role/view')}}/{{$val->id}}">View</a> <a class="btn btn-round btn-primary" href="{{url('role/edit')}}/{{$val->id}}">Edit</a> <a class="btn btn-round btn-success" href="{{url('role/delete')}}/{{$val->id}}" onclick="return confirm('Are you sure?')">Delete</a></td>
                         
                         @endforeach
                         

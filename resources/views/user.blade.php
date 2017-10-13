@@ -34,13 +34,13 @@
                           <td>{{$val->mobile}}</td>
                           <td>{{$val->email}}</td>
                           <td>{{$val->password}}</td>
-                          <td>{{$val->name}}</td>
+                          <td>{{$val->role_id}}</td>
                           <td>{{$val->name}}</td>
                           <td>{{$val->create_date}}</td>
                           <td>{{$val->modify_date}}</td>
                           <td>{{$val->active}}</td>
 
-                          <td>Action</td>
+                         <td><a class="btn btn-round btn-info" href="{{url('users/view')}}/{{$val->id}}">View</a> <a class="btn btn-round btn-primary" href="{{url('users/edit')}}/{{$val->id}}">Edit</a> <a class="btn btn-round btn-success" href="{{url('users/delete')}}/{{$val->id}}" onclick="return confirm('Are you sure?')">Delete</a></td>
                         
                         @endforeach
                         

@@ -10,20 +10,23 @@
                   </div>
                   <div class="x_content">
                     <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                    <form    class="form-horizontal form-label-left" method="post" action="{{url('products-edit-submit')}}">
+                    {{ csrf_field() }}
+
+                     <input type="hidden" name="product_id" id="product_id" value="{{$query->id}}">
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name" >Name <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="productname" >Name <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="name" required="required" value="{{$query->name}}" class="form-control col-md-7 col-xs-12">
+                          <input type="text" name="productname" id="productname" required="required" value="{{$query->name}}" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="product_type">Product Type<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="product_type_id">Product Type<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control block drop-arr select-sty" name="product_type" id="product_type"  required>
+                          <select class="form-control block drop-arr select-sty" name="product_type_id" id="product_type_id"  required>
                                          
 
                                            @if($query->id==1)
@@ -68,7 +71,7 @@
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                           
-                          <button type="submit" class="btn btn-success">Submit</button>
+                          <button class="btn btn-success"  >Submit</button>
                         </div>
                       </div>
 

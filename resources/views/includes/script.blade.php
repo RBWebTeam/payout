@@ -42,15 +42,32 @@
          url: "{{URL::to('products-add-submit')}}",
          data : $('#products_add_form').serialize(),
          success: function(msg){
-         
-          
-          
-
-        }  
+          }  
       }); 
       // }
 
     });
+</script>
 
+<script type="text/javascript">
+  $("#payout_edit").click(function(event){
+    alert('okae');
+    event.preventDefault();
+      // form=$('#products_add_form');
+      // if(! form.valid()){
+      // }else{
+        //var s=$('#'+form).serialize();
 
+   
+        $.ajax({  
+         type: "POST",  
+         url: "{{URL::to('products-edit-submit')}}",
+         data : $('#payout_edit_form').serialize(),
+         success: function(msg){
+         
+         }  
+      }); 
+      // }
+
+    });
 </script>
