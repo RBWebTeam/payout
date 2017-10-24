@@ -60,3 +60,5 @@
     <script src="{{url('vendors/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
     <script src="{{url('vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js')}}"></script>
     <script src="{{url('vendors/datatables.net-scroller/js/dataTables.scroller.min.js')}}"></script>
+
+ 

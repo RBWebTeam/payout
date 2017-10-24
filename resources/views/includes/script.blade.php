@@ -27,47 +27,50 @@
    });
  </script>
 
- <script type="text/javascript">
-  $("#payout_submit").click(function(event){
-    alert('okae');
-    event.preventDefault();
-      // form=$('#products_add_form');
-      // if(! form.valid()){
-      // }else{
-        //var s=$('#'+form).serialize();
-
-   
-        $.ajax({  
-         type: "POST",  
-         url: "{{URL::to('products-add-submit')}}",
-         data : $('#products_add_form').serialize(),
-         success: function(msg){
-          }  
-      }); 
-      // }
-
-    });
-</script>
-
 <script type="text/javascript">
-  $("#payout_edit").click(function(event){
-    alert('okae');
-    event.preventDefault();
-      // form=$('#products_add_form');
-      // if(! form.valid()){
-      // }else{
-        //var s=$('#'+form).serialize();
 
+var array=[];
+  $(document).ready(function(){
+    
+    $.ajax({ 
+    url: "{{URL::to('dashboard-pie-chart')}}",
+    method:"GET",
+   success: function(msg)  
+   {
    
-        $.ajax({  
-         type: "POST",  
-         url: "{{URL::to('products-edit-submit')}}",
-         data : $('#payout_edit_form').serialize(),
-         success: function(msg){
-         
-         }  
-      }); 
-      // }
+    console.log(msg);
+ 
+var obj_status = new Array();
+ $.each(msg, function( key, value ){
+    var temp_status ={"statusname": value.statusname,"value": value.statuscnt, "url": "{{URL::to('pending-page')}}/"+value.statusid,};
+        obj_status.push(temp_status);  
+ });
 
-    });
+  var chart = AmCharts.makeChart( "chartdiv", {
+  "type": "pie",
+  "theme": "light",
+   "urlField": "url",
+  "dataProvider":obj_status,
+  "valueField": "value",
+  "titleField": "statusname",
+  "outlineAlpha": 0.4,
+  "depth3D": 15,
+  "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+  "angle": 30,
+  "export": {
+    "enabled": true
+  }
+} );
+    
+    
+   }
+
+ });
+
+
+});
+
+
+
+//]]>   
 </script>
