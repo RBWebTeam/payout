@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('cron-loan-data','CronJobsController@loanData');
+Route::post('cron-policy-data','CronJobsController@policyData');
+Route::post('cron-loan-data','CronJobsController@loanData');
