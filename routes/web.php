@@ -20,6 +20,7 @@
 //     return view('index1');
 // });
 Route::get('/','LoginController@login');
+Route::get('logout','LoginController@logout');
 Route::post('login-page','LoginController@login_page');
 
 Route::group(['middleware' => 'dashboard'], function () {

@@ -18,4 +18,3 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::post('cron-loan-data','CronJobsController@loanData');
 Route::post('cron-policy-data','CronJobsController@policyData');
-Route::post('cron-loan-data','CronJobsController@loanData');
