@@ -13,7 +13,9 @@ use DB;
 class LoginController extends Controller
 {
     public function login(){
-      
+      if(Session::get('userid')){
+        return redirect('dashboard');
+      }
     	return view('login');
     }
 
