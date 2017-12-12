@@ -13,7 +13,10 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                   <li><a href="{{URL::to('log-out')}}"><i class="fa fa-sign-out pull-right"></i> LogOut</a></li>
+
+                    
+                    <li><a href="{{URL::to('logout')}}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+
                   </ul>
                 </li>
 

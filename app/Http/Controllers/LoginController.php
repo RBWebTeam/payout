@@ -13,14 +13,11 @@ use DB;
 class LoginController extends Controller
 {
     public function login(){
-
+      
     	return view('login');
     }
 
     public function login_page(Request $request){
-
- 
-
     		$validator = Validator::make($request->all(), [
             'email' => 'required',
             'password' => 'required',
@@ -53,10 +50,9 @@ class LoginController extends Controller
       }
     }
 
-
     public function logout(){
+      Session::flush();
+      return Redirect('/');
 
-          Session::flush();
-        return redirect('/');
     }
 }
