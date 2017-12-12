@@ -28,7 +28,7 @@
  </script>
 
 <script type="text/javascript">
-
+ 
 var array=[];
   $(document).ready(function(){
     
@@ -38,7 +38,7 @@ var array=[];
    success: function(msg)  
    {
    
-    console.log(msg);
+   
  
 var obj_status = new Array();
  $.each(msg, function( key, value ){
@@ -62,7 +62,7 @@ var obj_status = new Array();
   }
 } );
     
-    
+     // console.log(chart);
    }
 
  });
@@ -73,4 +73,26 @@ var obj_status = new Array();
 
 
 //]]>   
+</script>
+
+<script type="text/javascript">
+  function mail(obj,val){
+    // //console.log(obj);
+    if(obj=='email' ){
+                   var str =$('#EmailID').val();
+                   var emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/; 
+                   var res = str.match(emailPattern);
+                   if(res){
+                     // //console.log('Pancard is valid one.!!');
+                      $('#e_mail').hide();
+
+                  }else{
+                    // //console.log('Oops.Please Enter Valid Pan Number.!!');
+                    $('#e_mail').show();
+
+                    return false;
+                  }
+                  
+  }
+}
 </script>

@@ -24,3 +24,7 @@
 
 <script type="text/javascript" src="{{URL::to('js/jquery.min.js')}}"></script>
 <script type="text/javascript" src="{{URL::to('js/validator.min.js')}}"></script>
+<script src="{{URL::to('js/amcharts.js')}}"></script>
+<script src="{{URL::to('js/pie.js')}}"></script>
+<script src="{{URL::to('js/light.js')}}"></script>
+

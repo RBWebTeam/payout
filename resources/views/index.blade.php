@@ -1,18 +1,8 @@
   @extends('includes.master')
   @section('content')    
 
-<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
-<script src="https://www.amcharts.com/lib/3/pie.js"></script>
 
 
-<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
-
-
-<script type='text/javascript'>//<![CDATA[
-
-
-
-</script> 
 
  <div class="right_col" role="main">
             <div class="row">

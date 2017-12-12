@@ -139,10 +139,7 @@ $users = DB::table('users')
     }
     
     public function status_edit_submit(Request $req){
-
-
-
-       $query= DB::update('call usp_statuses ("'.$req['status_id'].'","'.$req['statusname'].'","'.$req['active'].'","'.$req['sequence'].'","update")');
+     $query= DB::update('call usp_statuses ("'.$req['status_id'].'","'.$req['statusname'].'","'.$req['active'].'","'.$req['sequence'].'","update")');
          Session::flash('msg', "Updated Successfully");
         return  redirect('statuses');
    }
@@ -186,6 +183,27 @@ $users = DB::table('users')
     $query = DB::table('users')->select('id', 'name','mobile','email','password','role_id','create_date','modify_date','active')->where('id','=',$id)->get();
      return view('user-view',['query'=>$query]);
     }
+
+    public function users_edit($id){
+        // echo "hello";exit();
+    $query = DB::table('users')->select('id', 'name', 'mobile', 'email','password','role_id','product_type_id','create_date','modify_date','active')->where('id','=',$id)->first(); 
+    return view('user-edit',['query'=>$query]);
+    }
+
+    public function user_edit_submit(Request $req){
+     $query= DB::update('call usp_users ("'.$req['user_id'].'","'.$req['username'].'","'.$req['mobile'].'","'.$req['email'].'",
+        "'.$req['password'].'","'.$req['role_id'].'","'.$req['product_type_id'].'","'.$req['active'].'","update")');
+         Session::flash('msg', "Updated Successfully");
+        return  redirect('user');
+   }
+
+   public function users_delete($id){
+    $query= DB::delete('call usp_users ("'.$id.'",NULL,NULL,NULL,NULL,NULL,NULL,NULL,"delete")');
+        Session::flash('msg', "Deleted Successfully");
+        return  redirect('user');
+    }
+
+
     
 
 }

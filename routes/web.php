@@ -32,6 +32,8 @@ Route::group(['middleware' => 'dashboard'], function () {
  	Route::post('update-payout','PayoutController@update_payout');
 });
 
+Route::get('log-out','LoginController@logout');
+
 Route::group(['middleware' =>['mainadmin',]], function () {
 
 
@@ -67,9 +69,11 @@ Route::get('role/delete/{id}','MastersController@role_delete');
 
 /*Users*/
 Route::get('users/view/{id}','MastersController@users_view');
-// Route::get('role/edit/{id}','MastersController@role_edit');
-// Route::post('role-edit-submit','MastersController@role_edit_submit');
-// Route::get('role/delete/{id}','MastersController@role_delete');
+Route::get('users/edit/{id}','MastersController@users_edit');
+Route::post('user-edit-submit','MastersController@user_edit_submit');
+Route::get('users/delete/{id}','MastersController@users_delete');
+
+
 });
 
 

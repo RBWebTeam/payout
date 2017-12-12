@@ -35,7 +35,7 @@
                           <td>{{$val->email}}</td>
                           <td>{{$val->password}}</td>
                           <td>{{$val->role_id}}</td>
-                          <td>{{$val->name}}</td>
+                          <td>{{$val->product_type_id}}</td>
                           <td>{{$val->create_date}}</td>
                           <td>{{$val->modify_date}}</td>
                           <td>{{$val->active}}</td>
