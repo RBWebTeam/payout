@@ -7,10 +7,10 @@ class CronJobsController extends Controller
 {
 	public function loanData(Request $req){
 		date_default_timezone_set('Asia/Kolkata');
-		$make_data = array('ToDate' => "2016-01-01",'FromDate'=>date("Y-m-d",strtotime("-1 days")),'ProductCategory'=>"Loan");
+		$make_data = array('FromDate' => date("Y-m-d"),'ToDate'=>date("Y-m-d",strtotime("-1 days")),'ProductCategory'=>"Loan");
 		$data=json_encode($make_data);        
 		$url="http://beta.services.rupeeboss.com/LoginDtls.svc/xmlservice/dsplyApplndisbursalData";
-		$result=$this::call_json_data_api($url,$data);
+		$result=$this::call_json_data_api($url,$data,"");
 		$data_decoded=json_decode($result['http_result']);
 		if(!$data_decoded->statusId){
 			$d=json_decode($result['http_result'])->result;
@@ -31,22 +31,27 @@ class CronJobsController extends Controller
 
 	public function policyData(Request $req){
 		
-		$from="01-Jan-2016";
+		$from=date("d-M-Y");
 		$to=date("d-M-Y",strtotime("-1 days"));  
 		$url="http://202.131.96.100:7755/Service1.svc/PaymentDetails?FromDate=".$from."&ToDate=".$to;
 		$result=$this::call_json_data_get_api($url);
+
 		if(! $result)throw new \Exception("No data Found", 1);
 		;
 
 		$data=json_decode( $result['http_result']);
-
+		//print_r($data);exit();
 		if($data->PaymentDetailsResult)		
 			{
 				foreach ($data->PaymentDetailsResult as $key => $value) {
 							# code...
 							$value->PolicyDate=date_format( new \DateTime($value->PolicyDate),'Y-m-d H:i:s');   
 					 		$value->PaymentDate=date_format(new \DateTime($value->PaymentDate),'Y-m-d H:i:s');  
-							$exc=DB::select('call usp_insert_insurance_data(?,?,?,?,?,?,?,?,?,?,?,?,?)',[$value->CustomerName,$value->Email,$value->EntryNo,$value->Mobile,$value->NetPayOutAmt,$value->PayOutAmt,$value->PaymentDate,$value->PolicyAmt,$value->PolicyDate,$value->PolicyID,$value->ProductId,$value->VendorID,$value->VendorName]);
+					 		
+								// print_r('call usp_insert_insurance_data('.$value->CustomerName.','.$value->Email.','.$value->EntryNo.','.$value->Mobile.','.$value->NetPayOutAmt.','.$value->PayOutAmt.','.$value->PaymentDate.','.$value->PolicyAmt.','.$value->PolicyDate.','.$value->PolicyID.','.$value->ProductId.','.$value->VendorID.','.$value->VendorName.')');exit();
+							 $exc=DB::select('call usp_insert_insurance_data(?,?,?,?,?,?,?,?,?,?,?,?,?)',[$value->CustomerName,$value->Email,$value->EntryNo,$value->Mobile,$value->NetPayOutAmt,$value->PayOutAmt,$value->PaymentDate,$value->PolicyAmt,$value->PolicyDate,$value->PolicyID,$value->ProductId,$value->VendorID,$value->VendorName]);
+							 $this::update_bank_info($value->VendorID);
+
 						}
 					}else{
 						throw new \Exception("No data Found from ".$from." to ".$to, 1);
@@ -57,10 +62,32 @@ class CronJobsController extends Controller
 		
 		
 	}
-	public function call_json_data_api($url,$data){
+
+	public function update_bank_info($vendor_id){
+		try{$get_bank_info='{"Vendor_Id":"'.$vendor_id.'"}';
+				$header_for_bank=["UserName:test","Password:test@123"];
+				$bank_info=$this::call_json_data_api("http://vehicleinfo.policyboss.com/api/POSPBankInfo",$get_bank_info,$header_for_bank);
+				$data=json_decode($bank_info['http_result']);
+				if(!$bank_info['error'] || $data->ErrorResponse=="Success"){
+					//print_r($data);exit();
+					$exc=DB::select("call usp_update_bank_info(?,?,?,?,?)",[$data->Name_as_in_Bank,$data->Email_ID,$data->Bank_Account_No,$data->IFSC_Code,$vendor_id]);
+				}
+			}catch(\Exception $ee){
+				throw new \Exception("bank data can not be updated:\n".$ee->getMessage(), 1);
+				
+			}
+	}
+	public function call_json_data_api($url,$data,$header){
+
+
 		$ch = curl_init();
+		if($header){
+			array_push($header, 'Content-Type:application/json');
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+		}else{
+			curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));	
+		}
         curl_setopt($ch, CURLOPT_VERBOSE, 1);
-        curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
