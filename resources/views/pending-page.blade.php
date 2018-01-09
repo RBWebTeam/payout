@@ -20,7 +20,7 @@
                           <th>posp_code</th>
                           <th>dsa_code</th>
                           <th>product</th>
-                          <th>status_id</th>
+                          <th>status</th>
                           <th>create_date</th>
                           <th>modify_date</th>
                           <th>report_month</th>
@@ -68,7 +68,7 @@
 							<td>{{$value->posp_code}}</td>
 							<td>{{$value->dsa_code}}</td>
 							<td>{{$value->productname}}</td>
-							<td>{{$value->status_id}}</td>
+							<td>{{$value->statusname}}</td>
 							<td>{{$value->create_date}}</td>
 							<td>{{$value->modify_date}}</td>
 							<td>{{$value->report_month}}</td>
