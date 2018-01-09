@@ -27,7 +27,7 @@
                           <th>sm_name</th>
                           <th>posp_code</th>
                           <th>dsa_code</th>
-                          <th>product_id</th>
+                          <th>product</th>
                           <th>status_id</th>
                           <th>create_date</th>
                           <th>modify_date</th>
@@ -75,7 +75,7 @@
 							<td>{{$value->sm_name}}</td>
 							<td>{{$value->posp_code}}</td>
 							<td>{{$value->dsa_code}}</td>
-							<td>{{$value->product_id}}</td>
+							<td>{{$value->productname}}</td>
 							<td>{{$value->status_id}}</td>
 							<td>{{$value->create_date}}</td>
 							<td>{{$value->modify_date}}</td>
