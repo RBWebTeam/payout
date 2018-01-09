@@ -1,5 +1,12 @@
   @extends('includes.master')
   @section('content')  
+  <style type="text/css">
+  
+.scrollit {
+    overflow:scroll;
+    height:500px;
+}
+  </style>
  <div class="right_col" role="main">
             <div class="row"  class="right_col"">
               <div class="col-md-12 col-sm-12 col-xs-12">
@@ -9,6 +16,7 @@
                     <p class="text-muted font-13 m-b-30">
                    <b style="font-size: 30px">Product Type</b>
                     </p>
+                    <div class="scrollit" id="dvData">
                     <table id="" class="table table-striped table-bordered table-responsive">
                       <thead>
                         <tr>
@@ -60,7 +68,7 @@
                         <tbody>
                       	@foreach($payout_data as $value)
                         <tr>
-                            <td>{{$value->name}}</td>
+                        <td>{{$value->name}}</td>
 							<td>{{$value->fba_code}}</td>
 							<td>{{$value->fba_name}}</td>
 							<td>{{$value->sm_code}}</td>
@@ -104,16 +112,12 @@
 							<td>{{$value->final_commision_payable}}</td>
 							<td ><a   class="btn btn-info btn-lg update_status" data-toggle="modal" data-target="#approve_modal" data-val="{{$value->id}}">
 									Proceed</a>
-									
 							</td>
-							
-							
-                        </tr>
-                     @endforeach
-                        
-                      
+							</tr>
+              @endforeach
                       </tbody>
                     </table>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -126,12 +130,12 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Update Status</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Update Status</h4>
         </div>
         <div class="modal-body">
         <form method="POST" action="{{URL::to('update-payout')}}" id="update_status_form">	
-        	<input type="hidden" name="sale_id" id="modal_saleid">
+        <input type="hidden" name="sale_id" id="modal_saleid">
         {{csrf_field()}}	 
 			    <div class="form-group col-md-4">
 			      <label for="modal_status" class="col-form-label">State</label>
@@ -143,25 +147,23 @@
 		          	@endforeach
 		          	</select>
 		          	 
-			    </div>
-			    
-			    <div class="form-group col-md-6">
-			      <label for="inputZip" class="col-form-label">Remark</label>
-			<input type="textarea" class="form-control" id="modal_remark" name="modal_remark" required>
-			    </div>
-			    <div class="form-group col-md-8">
-			      <button type="submit" class="btn btn-primary">Submit</button>
-			    </div>
-			  
-			</form>
-			          
-        </div>
+			  </div>
+			  <div class="form-group col-md-6">
+			  <label for="inputZip" class="col-form-label">Remark</label>
+		  	<input type="textarea" class="form-control" id="modal_remark" name="modal_remark" required>
+			  </div>
+			  <div class="form-group col-md-8">
+			  <button type="submit" class="btn btn-primary">Submit</button>
+			  </div>
+			  </form>
+			  </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
-      </div>
-      
-    </div>
-  </div>
-  
-   @endsection
+        </div>
+        </div>
+        </div>
+        @endsection
+   
+
+   
