@@ -7,7 +7,7 @@ class CronJobsController extends Controller
 {
 	public function loanData(Request $req){
 		date_default_timezone_set('Asia/Kolkata');
-		$make_data = array('FromDate' => date("Y-m-d"),'ToDate'=>date("Y-m-d",strtotime("-1 days")),'ProductCategory'=>"Loan");
+		$make_data = array('ToDate' => date("Y-m-d"),'FromDate'=>date("Y-m-d",strtotime("-1 days")),'ProductCategory'=>"Loan");
 		$data=json_encode($make_data);        
 		$url="http://beta.services.rupeeboss.com/LoginDtls.svc/xmlservice/dsplyApplndisbursalData";
 		$result=$this::call_json_data_api($url,$data,"");
@@ -31,8 +31,8 @@ class CronJobsController extends Controller
 
 	public function policyData(Request $req){
 		
-		$from=date("d-M-Y");
-		$to=date("d-M-Y",strtotime("-1 days"));  
+		$to=date("d-M-Y");
+		$from=date("d-M-Y",strtotime("-1 days"));  
 		$url="http://202.131.96.100:7755/Service1.svc/PaymentDetails?FromDate=".$from."&ToDate=".$to;
 		$result=$this::call_json_data_get_api($url);
 
