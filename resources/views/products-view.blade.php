@@ -9,6 +9,7 @@
                     <p class="text-muted font-13 m-b-30">
                     <b style="font-size: 30px">Product</b>
                     </p>
+                    
                     <table  class="table table-striped table-bordered">
                       <thead>
                         <tr>

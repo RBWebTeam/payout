@@ -27,7 +27,7 @@
                     <!-- <span class="badge bg-green">6</span> -->
 
                   </a>
-                  <a href="{{URL::to('/')}}">
+                  <a href="{{URL::to('/dashboard')}}">
                     <span class="glyphicon glyphicon-home"></span>
                   </a>
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
