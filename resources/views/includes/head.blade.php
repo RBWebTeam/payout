@@ -28,3 +28,4 @@
 <script src="{{URL::to('js/pie.js')}}"></script>
 <script src="{{URL::to('js/light.js')}}"></script>
 
+
