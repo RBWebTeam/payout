@@ -30,7 +30,9 @@ class PayoutController extends Controller
 		$user_id=Session::get('userid');
 		$role_id=Session::get('role_id');
 		$data=DB::select('Call usp_statuswise_sales(?,?)',[$user_id,$status]);
+		// print_r($data);exit();
 		$status=DB::select('Call usp_load_rolewise_statuses(?)',[$role_id]);
+
 		return view('pending-page')->with(["payout_data"=>$data,"status"=>$status]);
 		
 	}

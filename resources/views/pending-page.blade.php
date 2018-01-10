@@ -1,7 +1,7 @@
-  @extends('includes.master')
-  @section('content')  
-
-  <style type="text/css">
+@extends('includes.master')
+@section('content')
+<script src="{{URL::to('js/jquery.table2excel.min.js')}}" type="text/javascript"></script>
+<style type="text/css">
   
 .scrollit {
     overflow:scroll;
@@ -20,17 +20,17 @@
                     </p>
 
 
-                                <a class="btn btn-info btn-outline with-arrow mrg-top" name="create_excel" id="create_excel">Create Excel<i class="icon-arrow-right"></i></a>
+                                <button onclick="exportexcel()">Export to Excel</button>  
 
 
-                          <form class="" id="document_upload_form" action="{{URL::to('excel-upload-submit')}}" role="form" method="POST" enctype="multipart/form-data">
-                                {{ csrf_field() }}
-                                <input type="file" name="file"><br>
-                                <input type="submit" name="submit">
+                                <form class="" id="document_upload_form" action="{{URL::to('excel-upload-submit')}}" role="form" method="POST" enctype="multipart/form-data">
+                                      {{ csrf_field() }}
+                                      <input type="file" name="file"><br>
+                                      <input type="submit" name="submit">
 
-                                
-                                                           <!--      <a class="btn btn-info btn-outline with-arrow mrg-top" id="excel_doc">Upload Excel<i class="icon-arrow-right"></i></a> -->
-                       </form><br>
+                                      
+                                                                 <!--      <a class="btn btn-info btn-outline with-arrow mrg-top" id="excel_doc">Upload Excel<i class="icon-arrow-right"></i></a> -->
+                             </form><br>
 
                        <div class="scrollit" id="product_related">    
 
@@ -80,6 +80,12 @@
                           <th>less_tds</th>
                           <th>net_payable_after_tds</th>
                           <th>final_commision_payable</th>
+                          <th>utr_no</th>
+                          <th>amount_paid</th>
+                          <th>processed_by</th>
+                          <th>processed_on</th>
+                          <th>remark</th>
+                          
                           <th>Action</th>
                         </tr>
                         <thead>
@@ -129,6 +135,12 @@
 							<td>{{$value->less_tds}}</td>
 							<td>{{$value->net_payable_after_tds}}</td>
 							<td>{{$value->final_commision_payable}}</td>
+              <td>{{$value->utr_no}}</td>
+              <td>{{$value->amount_paid}}</td>
+              <td>{{$value->processed_by}}</td>
+              <td>{{$value->processed_on}}</td>
+              <td>{{$value->remark}}</td>
+            
 							<td ><a   class="btn btn-info btn-lg update_status" data-toggle="modal" data-target="#approve_modal" data-val="{{$value->id}}">
 									Proceed</a>
 							</td>
@@ -147,95 +159,13 @@
 
 
 <script type="text/javascript">
-  
-
-  
-
-
-
-   function exportTableToCSV($table, filename) {
-
-        var $rows = $table.find('tr:has(td)'),
-
-            // Temporary delimiter characters unlikely to be typed by keyboard
-            // This is to avoid accidentally splitting the actual contents
-            tmpColDelim = String.fromCharCode(11), // vertical tab character
-            tmpRowDelim = String.fromCharCode(0), // null character
-
-            // actual delimiter characters for CSV format
-            colDelim = '","',
-            rowDelim = '"\r\n"',
-
-            // Grab text from table into CSV formatted string
-            csv = '"' + $rows.map(function (i, row) {
-                var $row = $(row),
-                    $cols = $row.find('td');
-
-                return $cols.map(function (j, col) {
-                    var $col = $(col),
-                        text = $col.text();
-
-                    return text.replace(/"/g, '""'); // escape double quotes
-
-                }).get().join(tmpColDelim);
-
-            }).get().join(tmpRowDelim)
-                .split(tmpRowDelim).join(rowDelim)
-                .split(tmpColDelim).join(colDelim) + '"';
-
-        // Deliberate 'false', see comment below
-        if (false && window.navigator.msSaveBlob) {
-
-            var blob = new Blob([decodeURIComponent(csv)], {
-                type: 'text/csv;charset=utf8'
-            });
-            
-            // Crashes in IE 10, IE 11 and Microsoft Edge
-            // See MS Edge Issue #10396033: https://goo.gl/AEiSjJ
-            // Hence, the deliberate 'false'
-            // This is here just for completeness
-            // Remove the 'false' at your own risk
-            window.navigator.msSaveBlob(blob, filename);
-            
-        } else if (window.Blob && window.URL) {
-            // HTML5 Blob        
-            var blob = new Blob([csv], { type: 'text/csv;charset=utf8' });
-            var csvUrl = URL.createObjectURL(blob);
-
-            $(this)
-                .attr({
-                    'download': filename,
-                    'href': csvUrl
-                });
-        } else {
-            // Data URI
-            var csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
-
-            $(this)
-                .attr({
-                    'download': filename,
-                    'href': csvData,
-                    'target': '_blank'
-                });
-        }
-    }
-
-    // This must be a hyperlink
-
-    
-
-     $("#create_excel").on('click', function (event) {
-        // CSV
-        
-        var args = [$('#product_related>table'), 'export.csv'];
-        
-        exportTableToCSV.apply(this, args);
-        
-        // If CSV, don't do event.preventDefault() or return false
-        // We actually need this to be a typical hyperlink
-    });
-
-
+function exportexcel() {  
+            $("#product_related").table2excel({  
+                name: "Table2Excel",  
+                filename: "myFileName.xls",  
+                fileext: ".xls"  
+            });  
+        }  
 </script>
 
 
