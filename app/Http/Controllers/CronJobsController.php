@@ -18,7 +18,7 @@ class CronJobsController extends Controller
 				foreach ($value as $k => $val) {
 				$val->transaction_date=date_format( new \DateTime($val->transaction_date),'Y-m-d H:i:s');
 				$val->disbursal_date=date_format( new \DateTime($val->disbursal_date),'Y-m-d H:i:s');
-				$exec=DB::statement('CALL usp_insert_payout_data(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',[$val->area,$val->bank_nbfc ,$val->business_mode ,$val->class_of_business ,$val->client_name ,$val->disbursal_data ,$val->disbursal_date ,$val->disbursal_for_payout ,$val->dsa_code ,$val->fba_code ,$val->fba_name,$val->loan_no ,$val->location ,$val->payee_account_ifsc ,$val->payee_account_no  ,$val->payee_name ,$val->process ,$val->region ,$val->sm_code ,$val->sm_name ,$val->transaction_date ,"Home Loan" ,$val->type_of_entry]);
+				$exec=DB::statement('CALL usp_insert_payout_data(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',[$val->area,$val->bank_nbfc ,$val->business_mode ,$val->class_of_business ,$val->client_name ,$val->disbursal_data ,$val->disbursal_date ,$val->disbursal_for_payout ,$val->dsa_code ,$val->fba_code ,$val->fba_name,$val->loan_no ,$val->location ,$val->payee_account_ifsc ,$val->payee_account_no  ,$val->payee_name ,$val->process ,$val->region ,$val->sm_code ,$val->sm_name ,$val->transaction_date ,"Home Loan" ,$val->type_of_entry,$val->leadId]);
 				}
 				
 			}
@@ -32,7 +32,7 @@ class CronJobsController extends Controller
 	public function policyData(Request $req){
 		
 		$to=date("d-M-Y");
-		$from=date("d-M-Y",strtotime("-1 days"));  
+		$from=date("d-M-Y",strtotime("-1 days"));
 		$url="http://202.131.96.100:7755/Service1.svc/PaymentDetails?FromDate=".$from."&ToDate=".$to;
 		$result=$this::call_json_data_get_api($url);
 
