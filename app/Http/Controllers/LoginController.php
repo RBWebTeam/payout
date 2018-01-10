@@ -38,14 +38,14 @@ class LoginController extends CallApiController
           //->where('user_type_id','!=','0')
           ->first();
           if($value){
-            $this::set_session_for_user($value->id,$value->name,$value->email,$value->role_id,$value->product_type_id);
+            $this::set_session_for_user($value->id,$value->name,$value->email,$value->role_id,$value->product_type_id,0);
             $is_authenticated=1;
           }else{
             $agent_from_api=$this::call_agent_api($request);
             //print_r($agent_from_api);exit();
             if($agent_from_api)
                { 
-                  $this::set_session_for_user(15,$agent_from_api->Fullname,$agent_from_api->UserName,5,1);
+                  $this::set_session_for_user(15,$agent_from_api->Fullname,$agent_from_api->UserName,5,1,$agent_from_api->FBAId);
                   $is_authenticated=1;
               }
 
@@ -90,11 +90,12 @@ class LoginController extends CallApiController
 
 
     }
-    public function set_session_for_user($id,$name,$email,$role_id,$product_type_id){
+    public function set_session_for_user($id,$name,$email,$role_id,$product_type_id,$fba){
         Session::put('userid',$id);
         Session::put('name',$name);
         Session::put('email',$email);
         Session::put('role_id',$role_id);
         Session::put('product_type_id',$product_type_id);
+        Session::put('fba_id',$fba);
     }
 }

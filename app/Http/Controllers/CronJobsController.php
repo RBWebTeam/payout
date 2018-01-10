@@ -122,4 +122,4 @@ class CronJobsController extends Controller
 		return $result;
 	}
 	
-}
+}	
