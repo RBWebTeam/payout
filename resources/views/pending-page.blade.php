@@ -1,6 +1,15 @@
   @extends('includes.master')
   @section('content')  
-<div class="right_col" role="main">
+
+  <style type="text/css">
+  
+.scrollit {
+    overflow:scroll;
+    height:500px;
+}
+  </style>
+ <div class="right_col" role="main">
+
             <div class="row"  class="right_col"">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -9,6 +18,7 @@
                     <p class="text-muted font-13 m-b-30">
                    <b style="font-size: 30px">Product Type</b>
                     </p>
+
 
                                 <a class="btn btn-info btn-outline with-arrow mrg-top" name="create_excel" id="create_excel">Create Excel<i class="icon-arrow-right"></i></a>
 
@@ -22,9 +32,11 @@
                                                            <!--      <a class="btn btn-info btn-outline with-arrow mrg-top" id="excel_doc">Upload Excel<i class="icon-arrow-right"></i></a> -->
                        </form><br>
 
-                       <div id="product_related">    
+                       <div class="scrollit" id="product_related">    
+
                     <table id="" class="table table-striped table-bordered table-responsive">
-                      
+                      <thead>
+
                         <tr>
                           <th>name</th>
                           <th>fba_code</th>
@@ -33,8 +45,8 @@
                           <th>sm_name</th>
                           <th>posp_code</th>
                           <th>dsa_code</th>
-                          <th>product_id</th>
-                          <th>status_id</th>
+                          <th>product</th>
+                          <th>status</th>
                           <th>create_date</th>
                           <th>modify_date</th>
                           <th>report_month</th>
@@ -70,19 +82,20 @@
                           <th>final_commision_payable</th>
                           <th>Action</th>
                         </tr>
-                        
-                        
-                      	@foreach($payout_data as $value)
+                        <thead>
+                          
+                          <tbody>
+                         @foreach($payout_data as $value)
                         <tr>
-                            <td>{{$value->name}}</td>
+                        <td>{{$value->name}}</td>
 							<td>{{$value->fba_code}}</td>
 							<td>{{$value->fba_name}}</td>
 							<td>{{$value->sm_code}}</td>
 							<td>{{$value->sm_name}}</td>
 							<td>{{$value->posp_code}}</td>
 							<td>{{$value->dsa_code}}</td>
-							<td>{{$value->product_id}}</td>
-							<td>{{$value->status_id}}</td>
+							<td>{{$value->productname}}</td>
+							<td>{{$value->statusname}}</td>
 							<td>{{$value->create_date}}</td>
 							<td>{{$value->modify_date}}</td>
 							<td>{{$value->report_month}}</td>
@@ -118,15 +131,12 @@
 							<td>{{$value->final_commision_payable}}</td>
 							<td ><a   class="btn btn-info btn-lg update_status" data-toggle="modal" data-target="#approve_modal" data-val="{{$value->id}}">
 									Proceed</a>
-									
 							</td>
-							
-							
-                        </tr>
-                     @endforeach
-                        
-                      
-                      
+
+							</tr>
+              @endforeach
+                      </tbody>
+
                     </table>
                     </div>
                   </div>
@@ -238,12 +248,12 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Update Status</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Update Status</h4>
         </div>
         <div class="modal-body">
         <form method="POST" action="{{URL::to('update-payout')}}" id="update_status_form">	
-        	<input type="hidden" name="sale_id" id="modal_saleid">
+        <input type="hidden" name="sale_id" id="modal_saleid">
         {{csrf_field()}}	 
 			    <div class="form-group col-md-4">
 			      <label for="modal_status" class="col-form-label">State</label>
@@ -255,28 +265,27 @@
 		          	@endforeach
 		          	</select>
 		          	 
-			    </div>
-			    
-			    <div class="form-group col-md-6">
-			      <label for="inputZip" class="col-form-label">Remark</label>
-			<input type="textarea" class="form-control" id="modal_remark" name="modal_remark" required>
-			    </div>
-			    <div class="form-group col-md-8">
-			      <button type="submit" class="btn btn-primary">Submit</button>
-			    </div>
-			  
-			</form>
-			          
-        </div>
+			  </div>
+			  <div class="form-group col-md-6">
+			  <label for="inputZip" class="col-form-label">Remark</label>
+		  	<input type="textarea" class="form-control" id="modal_remark" name="modal_remark" required>
+			  </div>
+			  <div class="form-group col-md-8">
+			  <button type="submit" class="btn btn-primary">Submit</button>
+			  </div>
+			  </form>
+			  </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
+
       </div>
       
     </div>
   </div>
   
    @endsection
+
 
 
 
