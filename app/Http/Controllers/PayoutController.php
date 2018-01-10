@@ -34,4 +34,27 @@ class PayoutController extends Controller
 		return view('pending-page')->with(["payout_data"=>$data,"status"=>$status]);
 		
 	}
+
+	public function excel_upload_submit(Request $req){
+    
+      $data = \Excel::load($req['file'])->toObject();
+       //print_r($data);exit();
+       foreach ($data as $key => $value) {
+       foreach ($value as $k => $val) {
+
+      if(isset($val->employername)){
+      	$this->insertexcel($val->employername,$val->final_category); 
+      }elseif (isset($val->hospital_name)) {
+      	$this->insertexcel($val->hospital_name,$val->category);
+      }elseif (isset($val->name)) {
+      	$this->insertexcel($val->name,$val->category);
+    }
+  
+    
+        
+      }
+    
+
+     }
+	}
 }

@@ -31,6 +31,9 @@ Route::group(['middleware' => 'dashboard'], function () {
 	
  	Route::get('pending-page/{id}','PayoutController@pending_payout');
  	Route::post('update-payout','PayoutController@update_payout');
+
+ 	Route::post('excel-upload-submit','PayoutController@excel_upload_submit');
+ 	
 });
 
 Route::get('log-out','LoginController@logout');
@@ -73,6 +76,10 @@ Route::get('users/view/{id}','MastersController@users_view');
 Route::get('users/edit/{id}','MastersController@users_edit');
 Route::post('user-edit-submit','MastersController@user_edit_submit');
 Route::get('users/delete/{id}','MastersController@users_delete');
+
+/*Excel Upload*/
+
+
 
 
 });
