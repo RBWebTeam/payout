@@ -97,5 +97,6 @@ class LoginController extends CallApiController
         Session::put('role_id',$role_id);
         Session::put('product_type_id',$product_type_id);
         Session::put('fba_id',$fba);
+        
     }
 }

@@ -28,8 +28,13 @@ class PayoutController extends Controller
 	public function get_payout_data($status){
 		
 		$user_id=Session::get('userid');
+		// print_r($user_id);exit();
 		$role_id=Session::get('role_id');
-		$data=DB::select('Call usp_statuswise_sales(?,?)',[$user_id,$status]);
+		$fba_id=Session::get('fba_id');
+		$email=Session::get('email');
+		$status_id=Session::get('status_id');
+		// print_r($status_id);exit();
+		$data=DB::select('Call usp_statuswise_sales(?,?,?,?)',[$user_id,$status,$fba_id,$email]);
 		// print_r($data);exit();
 		$status=DB::select('Call usp_load_rolewise_statuses(?)',[$role_id]);
 

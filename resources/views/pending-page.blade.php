@@ -2,7 +2,6 @@
 @section('content')
 <script src="{{URL::to('js/jquery.table2excel.min.js')}}" type="text/javascript"></script>
 <style type="text/css">
-  
 .scrollit {
     overflow:scroll;
     height:500px;
@@ -19,18 +18,17 @@
                    <b style="font-size: 30px">Product Type</b>
                     </p>
 
-
-                                <button onclick="exportexcel()">Export to Excel</button>  
-
-
+                               @if(Session::get('role_id')!=5)
+                                <button id="exportexcel" onclick="exportexcel()">Export to Excel</button>  
                                 <form class="" id="document_upload_form" action="{{URL::to('excel-upload-submit')}}" role="form" method="POST" enctype="multipart/form-data">
                                       {{ csrf_field() }}
                                       <input type="file" name="file"><br>
-                                      <input type="submit" name="submit">
-
-                                      
-                                                                 <!--      <a class="btn btn-info btn-outline with-arrow mrg-top" id="excel_doc">Upload Excel<i class="icon-arrow-right"></i></a> -->
+                                      <input type="submit" name="submit">   
                              </form><br>
+                             @endif
+
+
+
 
                        <div class="scrollit" id="product_related">    
 
@@ -84,9 +82,11 @@
                           <th>amount_paid</th>
                           <th>processed_by</th>
                           <th>processed_on</th>
-                          <th>remark</th>
                           
+                          <th>remark</th>
+                          @if(Session::get('role_id')!=5)
                           <th>Action</th>
+                          @endif
                         </tr>
                         <thead>
                           
@@ -139,11 +139,17 @@
               <td>{{$value->amount_paid}}</td>
               <td>{{$value->processed_by}}</td>
               <td>{{$value->processed_on}}</td>
+              
+              
               <td>{{$value->remark}}</td>
-            
-							<td ><a   class="btn btn-info btn-lg update_status" data-toggle="modal" data-target="#approve_modal" data-val="{{$value->id}}">
+            @if(Session::get('role_id')!=5)
+							<td >
+ 
+              <a   class="btn btn-info btn-lg update_status" data-toggle="modal" data-target="#approve_modal" data-val="{{$value->id}}">
 									Proceed</a>
+                  
 							</td>
+              @endif
 
 							</tr>
               @endforeach
@@ -167,6 +173,8 @@ function exportexcel() {
             });  
         }  
 </script>
+
+
 
 
 
