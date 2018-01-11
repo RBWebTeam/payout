@@ -1,9 +1,6 @@
 
 <script type="text/javascript">
-
-
-
-    function fnAllowNumeric(evt) {
+function fnAllowNumeric(evt) {
             evt = (evt) ? evt : window.event;
             var charCode = (evt.which) ? evt.which : evt.keyCode;
             if (charCode > 31 && (charCode < 48 || charCode > 57)) {
@@ -40,7 +37,8 @@ var array=[];
    
    
  
-var obj_status = new Array();
+    var obj_status = new Array();
+    console.log(obj_status);
  $.each(msg, function( key, value ){
     var temp_status ={"statusname": value.statusname,"value": value.statuscnt, "url": "{{URL::to('pending-page')}}/"+value.statusid,};
         obj_status.push(temp_status);  

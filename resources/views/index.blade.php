@@ -19,6 +19,8 @@
                    <div id="chartdiv" style="width: 100%; height: 500px;"></div>
                    @elseif(Session::get('role_id')==4)
                    <div id="chartdiv" style="width: 100%; height: 500px;"></div>
+                   @elseif(Session::get('role_id')==5)
+                   <div id="chartdiv" style="width: 100%; height: 500px;"></div>
                    
                  
                    @endif
