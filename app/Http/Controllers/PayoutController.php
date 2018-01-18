@@ -64,4 +64,9 @@ class PayoutController extends Controller
 
      }
 	}
+
+	public function tableexcel(){
+		echo "Heloo wWorld";
+		return view('tableexcel');
+	}
 }

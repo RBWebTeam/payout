@@ -33,6 +33,7 @@ Route::group(['middleware' => 'dashboard'], function () {
  	Route::post('update-payout','PayoutController@update_payout');
 
  	Route::post('excel-upload-submit','PayoutController@excel_upload_submit');
+ 	Route::get('tableexcel','PayoutController@tableexcel');
  	
 });
 

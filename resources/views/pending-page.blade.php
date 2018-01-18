@@ -1,6 +1,8 @@
 @extends('includes.master')
 @section('content')
-<script src="{{URL::to('js/jquery.table2excel.min.js')}}" type="text/javascript"></script>
+<!-- <script src="{{URL::to('js/jquery.table2excel.min.js')}}" type="text/javascript"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://rawgit.com/unconditional/jquery-table2excel/master/src/jquery.table2excel.js"></script>
 <style type="text/css">
 .scrollit {
     overflow:scroll;
@@ -36,6 +38,7 @@
                       <thead>
 
                         <tr>
+                          <th>id</th>
                           <th>name</th>
                           <th>fba_code</th>
                           <th>fba_name</th>
@@ -45,6 +48,10 @@
                           <th>modify_date</th>
                           <th>business_mode</th>
                           <th>type_of_entry</th>
+                          <th>inception_date</th>
+                          <th>disbursal_date</th>
+                          <th>entryno</th>
+                          <th>policydate</th>
                           <th>client_name</th>
                           <th>class_of_business</th>
                           <th>type_of_business</th>
@@ -54,7 +61,7 @@
                           <th>gross_payable</th>
                           <th>less_tds</th>
                           <th>net_payable_after_tds</th>
-                          <th>final_commision_payable</th>
+                          
                           <th>utr_no</th>
                           <th>amount_paid</th>
                           <th>processed_by</th>
@@ -70,6 +77,7 @@
                           <tbody>
                          @foreach($payout_data as $value)
                         <tr>
+                        <td>{{$value->id}}</td>
                         <td>{{$value->name}}</td>
 							<td>{{$value->fba_code}}</td>
 							<td>{{$value->fba_name}}</td>
@@ -79,16 +87,20 @@
 							<td>{{$value->modify_date}}</td>
 							<td>{{$value->business_mode}}</td>
 							<td>{{$value->type_of_entry}}</td>
-							<td>{{$value->client_name}}</td>
+              <td>{{$value->inception_date}}</td>
+              <td>{{$value->disbursal_date}}</td>
+              <td>{{$value->entryno}}</td>
+              <td>{{$value->policydate}}</td>
+              <td>{{$value->client_name}}</td>
 							<td>{{$value->class_of_business}}</td>
 							<td>{{$value->type_of_business}}</td>
-							<td>{{$value->policy_no}}</td>
+							<td>{{$value->policy_no}}`</td>
 							<td>{{$value->premium_for_payout}}</td>
 							<td>{{$value->payout}}</td>
 							<td>{{$value->gross_payable}}</td>
 							<td>{{$value->less_tds}}</td>
 							<td>{{$value->net_payable_after_tds}}</td>
-							<td>{{$value->final_commision_payable}}</td>
+							
               <td>{{$value->utr_no}}</td>
               <td>{{$value->amount_paid}}</td>
               <td>{{$value->processed_by}}</td>
@@ -120,7 +132,7 @@
 
 <script type="text/javascript">
 function exportexcel() {  
-alert('okae');
+
             $("#product_related").table2excel({  
                 name: "Table2Excel",  
                 filename: "myFileName.xls",  
