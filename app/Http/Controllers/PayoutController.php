@@ -45,25 +45,33 @@ class PayoutController extends Controller
 	public function excel_upload_submit(Request $req){
     
       $data = \Excel::load($req['file'])->toObject();
-       //print_r($data);exit();
+       
+      // print_r($data);exit();
        foreach ($data as $key => $value) {
-       foreach ($value as $k => $val) {
-
-      if(isset($val->employername)){
-      	$this->insertexcel($val->employername,$val->final_category); 
-      }elseif (isset($val->hospital_name)) {
-      	$this->insertexcel($val->hospital_name,$val->category);
-      }elseif (isset($val->name)) {
-      	$this->insertexcel($val->name,$val->category);
+       //foreach ($value as $k => $val) {
+      
+        if($value->id!=null ||$value->utr_no!=null || $value->amount_paid!=null || $value->processed_by!=null || $value->processed_on!=null || $value->remark!=null){
+        	$this->insertexcel($value->id,$value->utr_no,$value->amount_paid,$value->processed_by,$value->processed_on,$value->remark); 
     }
-  
-    
-        
-      }
-    
-
      }
+   
 	}
+
+
+	public function insertexcel($id,$utr_no,$amount_paid,$processed_by,$processed_on,$remark){
+                         
+
+         $query=DB::table('sales')->where('id','=', $id)->update(
+         	['utr_no' =>$utr_no,
+           'amount_paid'=> $amount_paid,
+           'processed_by'=>$processed_by,
+           'processed_on'=>$processed_on,
+           'remark'=>$remark
+           ]);
+         
+         
+         
+    }
 
 	public function tableexcel(){
 		echo "Heloo wWorld";
