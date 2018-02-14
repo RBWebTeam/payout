@@ -11,10 +11,12 @@
     <!-- <script src="{{url('vendors/jquery/dist/jquery.min.js')}}"></script> -->
     <!-- Bootstrap -->
     <script src="{{url('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-    <!-- FastClick -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- <!-- <!-- FastClick -->
     <script src="{{url('vendors/fastclick/lib/fastclick.js')}}"></script>
     <!-- NProgress -->
-    <script src="{{url('vendors/nprogress/nprogress.js')}}"></script>
+    
     <!-- Chart.js -->
     <script src="{{url('vendors/Chart.js/dist/Chart.min.js')}}"></script>
     <!-- gauge.js -->

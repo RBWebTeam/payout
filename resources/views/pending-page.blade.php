@@ -3,6 +3,7 @@
 <!-- <script src="{{URL::to('js/jquery.table2excel.min.js')}}" type="text/javascript"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="https://rawgit.com/unconditional/jquery-table2excel/master/src/jquery.table2excel.js"></script>
+
 <style type="text/css">
 .scrollit {
     overflow:scroll;
