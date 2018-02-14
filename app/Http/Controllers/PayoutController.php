@@ -26,6 +26,7 @@ class PayoutController extends Controller
 		
 	}
 	public function get_payout_data($status){
+		// print_r($status);exit();
 		
 		$user_id=Session::get('userid');
 		// print_r($user_id);exit();
@@ -54,7 +55,7 @@ class PayoutController extends Controller
         	$this->insertexcel($value->id,$value->utr_no,$value->amount_paid,$value->processed_by,$value->processed_on,$value->remark); 
     }
      }
-   
+        return redirect('dashboard');
 	}
 
 
@@ -68,6 +69,8 @@ class PayoutController extends Controller
            'processed_on'=>$processed_on,
            'remark'=>$remark
            ]);
+
+         
          
          
          

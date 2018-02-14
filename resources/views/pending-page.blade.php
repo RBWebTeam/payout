@@ -25,7 +25,9 @@
                                 <form class="" id="document_upload_form" action="{{URL::to('excel-upload-submit')}}" role="form" method="POST" enctype="multipart/form-data">
                                       {{ csrf_field() }}
                                       <input type="file" name="file"><br>
-                                      <input type="submit" name="submit">   
+                                      @if(Session::get('role_id')!=2 && Session::get('role_id')!=3)
+                                      <input type="submit" name="submit">  
+                                      @endif 
                              </form><br>
                              @endif
 
@@ -37,21 +39,26 @@
                     <table id="" class="table table-striped table-bordered table-responsive">
                       <thead>
 
-                        <tr>
+                        <tr>@if(Session::get('role_id')!=2 && Session::get('role_id')!=3 && Session::get('role_id')!=5)
                           <th>id</th>
+                          @endif
                           <th>name</th>
                           <th>fba_code</th>
                           <th>fba_name</th>
                           <th>product</th>
+                          @if(Session::get('role_id')!=2 && Session::get('role_id')!=3 && Session::get('role_id')!=5)
                           <th>status</th>
                           <th>create_date</th>
                           <th>modify_date</th>
-                          <th>business_mode</th>
                           <th>type_of_entry</th>
+                          @endif
+                          <th>business_mode</th>
                           <th>inception_date</th>
                           <th>disbursal_date</th>
+                          @if(Session::get('role_id')!=2 && Session::get('role_id')!=3 && Session::get('role_id')!=5)
                           <th>entryno</th>
                           <th>policydate</th>
+                          @endif
                           <th>client_name</th>
                           <th>class_of_business</th>
                           <th>type_of_business</th>
@@ -64,7 +71,9 @@
                           
                           <th>utr_no</th>
                           <th>amount_paid</th>
+                          @if(Session::get('role_id')!=2 && Session::get('role_id')!=3 && Session::get('role_id')!=5)
                           <th>processed_by</th>
+                          @endif
                           <th>processed_on</th>
                           
                           <th>remark</th>
@@ -76,21 +85,26 @@
                           
                           <tbody>
                          @foreach($payout_data as $value)
-                        <tr>
+                        <tr>@if(Session::get('role_id')!=2 && Session::get('role_id')!=3 && Session::get('role_id')!=5)
                         <td>{{$value->id}}</td>
+                        @endif
                         <td>{{$value->name}}</td>
 							<td>{{$value->fba_code}}</td>
 							<td>{{$value->fba_name}}</td>
 					    <td>{{$value->productname}}</td>
+               @if(Session::get('role_id')!=2 && Session::get('role_id')!=3 && Session::get('role_id')!=5)
 							<td>{{$value->statusname}}</td>
 							<td>{{$value->create_date}}</td>
 							<td>{{$value->modify_date}}</td>
+              <td>{{$value->type_of_entry}}</td>
+              @endif
 							<td>{{$value->business_mode}}</td>
-							<td>{{$value->type_of_entry}}</td>
-              <td>{{$value->inception_date}}</td>
+							<td>{{$value->inception_date}}</td>
               <td>{{$value->disbursal_date}}</td>
+              @if(Session::get('role_id')!=2 && Session::get('role_id')!=3 && Session::get('role_id')!=5)
               <td>{{$value->entryno}}</td>
               <td>{{$value->policydate}}</td>
+              @endif
               <td>{{$value->client_name}}</td>
 							<td>{{$value->class_of_business}}</td>
 							<td>{{$value->type_of_business}}</td>
@@ -103,7 +117,9 @@
 							
               <td>{{$value->utr_no}}</td>
               <td>{{$value->amount_paid}}</td>
+              @if(Session::get('role_id')!=2 && Session::get('role_id')!=3 && Session::get('role_id')!=5)
               <td>{{$value->processed_by}}</td>
+              @endif
               <td>{{$value->processed_on}}</td>
               
               

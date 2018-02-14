@@ -38,12 +38,20 @@ var array=[];
    
  
     var obj_status = new Array();
-    console.log(obj_status);
+     
  $.each(msg, function( key, value ){
     var temp_status ={"statusname": value.statusname,"value": value.statuscnt, "url": "{{URL::to('pending-page')}}/"+value.statusid,};
-        obj_status.push(temp_status);  
- });
+        obj_status.push(temp_status);
 
+       
+        
+     
+ });
+ console.log(obj_status[0].value==0);
+ if (obj_status[0].value==0) 
+ {
+  $("#chartdiv").html('<h1 style="color:red">No Data Found</h1>');
+ }else{
   var chart = AmCharts.makeChart( "chartdiv", {
   "type": "pie",
   "theme": "light",
@@ -59,6 +67,10 @@ var array=[];
     "enabled": true
   }
 } );
+ }
+
+
+  
     
      // console.log(chart);
    }
