@@ -44,7 +44,7 @@ class PayoutController extends Controller
 	}
 
 	public function excel_upload_submit(Request $req){
-    
+      // if(!$req['file'])return "No Such File";
       $data = \Excel::load($req['file'])->toObject();
        
       // print_r($data);exit();

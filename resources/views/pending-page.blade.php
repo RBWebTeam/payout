@@ -25,7 +25,7 @@
                                 <button id="exportexcel" onclick="exportexcel()">Export to Excel</button>  
                                 <form class="" id="document_upload_form" action="{{URL::to('excel-upload-submit')}}" role="form" method="POST" enctype="multipart/form-data">
                                       {{ csrf_field() }}
-                                      <input type="file" name="file"><br>
+                                      <input type="file" name="file" required><br>
                                       @if(Session::get('role_id')!=2 && Session::get('role_id')!=3)
                                       <input type="submit" name="submit">  
                                       @endif 
